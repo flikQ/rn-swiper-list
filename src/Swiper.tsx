@@ -9,7 +9,7 @@ import type {
 
 import useSwipeControls from './hooks/useSwipeControls';
 import SwiperCard from './SwiperCard';
-import type { SpringConfig } from 'react-native-reanimated/lib/typescript/reanimated2/animation/springUtils';
+import type { SpringConfig } from './index';
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get('screen');
 
@@ -211,10 +211,6 @@ const Swiper = <T,>(
     .reverse(); // to render cards in same hierarchy as their z-index
 };
 
-function fixedForwardRef<T, P = {}>(
-  render: (props: P, ref: React.Ref<T>) => React.ReactNode
-): (props: P & React.RefAttributes<T>) => React.ReactNode {
-  return React.forwardRef(render) as any;
-}
-
-export default fixedForwardRef(Swiper);
+export default React.forwardRef(Swiper) as <T>(
+  props: SwiperOptions<T> & React.RefAttributes<SwiperCardRefType>
+) => React.ReactElement;

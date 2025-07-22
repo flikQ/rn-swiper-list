@@ -1,6 +1,9 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
-import type { SpringConfig } from 'react-native-reanimated/lib/typescript/reanimated2/animation/springUtils';
+import type { WithSpringConfig } from 'react-native-reanimated';
+
+// Create our own SpringConfig type for backward compatibility
+export type SpringConfig = WithSpringConfig;
 
 export { default as Swiper } from './Swiper';
 
